@@ -64,6 +64,7 @@
     <Compile Include="Assets\scripts\TurretHit.cs" />
     <Compile Include="Assets\scripts\PowerFill.cs" />
     <Compile Include="Assets\scripts\EndGame.cs" />
+    <Compile Include="Assets\scripts\BrownPower.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\gde sam stao.txt" />
