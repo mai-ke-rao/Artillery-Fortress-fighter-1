@@ -65,6 +65,8 @@
     <Compile Include="Assets\scripts\PowerFill.cs" />
     <Compile Include="Assets\scripts\EndGame.cs" />
     <Compile Include="Assets\scripts\BrownPower.cs" />
+    <Compile Include="Assets\scripts\SiegeTower.cs" />
+    <Compile Include="Assets\scripts\BatteringRam.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\gde sam stao.txt" />

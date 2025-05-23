@@ -21,14 +21,15 @@ public class TurretHit : MonoBehaviour
     }
     void OnCollisionEnter2D()
     {
-        AudioSource.PlayClipAtPoint(blastSound, Camera.main.transform.position);
+        
 
-        StartCoroutine(Coroutine());
+        StartCoroutine(TurHit());
 
        
     }
-    private IEnumerator Coroutine()
+    public IEnumerator TurHit()
     {
+        AudioSource.PlayClipAtPoint(blastSound, Camera.main.transform.position);
         yield return new WaitForSeconds(0.3f);
         Debug.Log("bP" + BrownPower.loaded);
         if (BrownPower.loaded)

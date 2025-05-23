@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BrownPower : MonoBehaviour
 {
@@ -16,7 +18,10 @@ public class BrownPower : MonoBehaviour
     void Start()
     {
         loaded = false;
-
+        float numberX = Random.Range(-2.0f, -6.0f);
+        float numberY = Random.Range(0.0f, 4.5f);
+        randomPos = new Vector3(numberX, numberY, 0);
+        Bonus.transform.position = randomPos;
     }
 
     // Update is called once per frame
@@ -34,6 +39,7 @@ public class BrownPower : MonoBehaviour
         AudioSource.PlayClipAtPoint(collectSound, Camera.main.transform.position);
 
         loaded = true;
+        Bonus.SetActive(false);
         Debug.Log("brown power is:" + loaded);
         // You can do logic here
     }
@@ -41,6 +47,7 @@ public class BrownPower : MonoBehaviour
     {
 
         yield return new WaitForSeconds(3);
+        Bonus.SetActive(true);
         if (pivot2.activeSelf)
         {
             float numberX = Random.Range(-2.0f, -6.0f);
