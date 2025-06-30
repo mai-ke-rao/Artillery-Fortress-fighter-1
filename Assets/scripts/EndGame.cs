@@ -6,6 +6,7 @@ public class EndGame : MonoBehaviour
 {
     public GameObject bnex, bt1, bt2, gnex, gt1, gt2, bd1, bd2, bdn, gd1,gd2,gdn;
     public GameObject bres, bres1, bres2, gres, gres1, gres2;
+    public GameObject ram, tower;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +45,8 @@ public class EndGame : MonoBehaviour
         gd1.SetActive(false);
         gd2.SetActive(false);
 
+        ram.SetActive(false);
+        tower.SetActive(false);
 
     }
     private IEnumerator Coroutine2()
@@ -65,5 +68,8 @@ public class EndGame : MonoBehaviour
         bdn.SetActive(false);
         bd1.SetActive(false);
         bd2.SetActive(false);
+
+        ram.SetActive(false);
+        tower.SetActive(false);
     }
 }

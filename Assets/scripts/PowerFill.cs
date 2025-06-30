@@ -1,7 +1,9 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 
 public class PowerFill : MonoBehaviour
@@ -60,8 +62,9 @@ public class PowerFill : MonoBehaviour
         ObjectScale.y = 2.8f;
         ObjectScale.z = 2.8f;
         transform.localScale = ObjectScale;
-      
-      
+
+        PlayerTurn.TurnChange();
+        Debug.Log("Player turn: "+ PlayerTurn.Player1);
         pivo1.SetActive(true);
        
        

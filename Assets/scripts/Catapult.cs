@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Mathematics;
 using System;
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 //IT SETS ASTEROID BACK BUT IT CONTINUES FALLING
 
 public class Catapult : MonoBehaviour
@@ -13,7 +15,10 @@ public class Catapult : MonoBehaviour
 
     public GameObject HandlePivot;
     public GameObject fill;    // max value: 4.4f , 0f, 0f
+   
     public Rigidbody2D asteroid;
+
+
     float scale, tilt, ydiff;
     float width, height;
 
@@ -29,7 +34,8 @@ public class Catapult : MonoBehaviour
 
 
     void Start()
-    {
+    {       
+        
        trigger = false;
         oneTimer = false;
         asteroid.isKinematic = true;
@@ -58,7 +64,7 @@ public class Catapult : MonoBehaviour
         {
             trigger = false;
             asteroid.transform.position = initialAsteroid;
-           // Debug.Log("HELLO NIGGA I AM INSIDE INITAL SETTER TRIGGER IS: "+trigger);
+          
         }
         */
         //Trajectory controll
@@ -137,9 +143,10 @@ public class Catapult : MonoBehaviour
     private IEnumerator SetInitalAsteroid()
     {
         //waits 3 seconds and return trebulchet into the inital position
-        Debug.Log("yo I in setIntialAsteroid");
+        
         yield return new WaitForSeconds(5);
-
+        DebounceControll debounceControll = gameObject.GetComponentInChildren<DebounceControll>();
+        debounceControll.EnableCollider();
         asteroid.velocity = Vector3.zero;
         asteroid.angularVelocity = 0f;
         asteroid.isKinematic = true;

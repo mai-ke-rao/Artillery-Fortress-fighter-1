@@ -5,8 +5,7 @@ using UnityEngine;
 public class BatteringRam : MonoBehaviour
 {
     public GameObject sTower;
-    public GameObject pivot;
-    public GameObject pivot2;
+    
 
     public Rigidbody2D turret1;
     public Rigidbody2D turret1_ostecen;
@@ -19,10 +18,11 @@ public class BatteringRam : MonoBehaviour
     //position before the movement of sTower
     private Vector3 currentPosition;
     private Vector3 newPos;
+    private Vector3 InitialPosition;
     // Start is called before the first frame update
     void Start()
     {
-
+        InitialPosition = sTower.transform.position;
     }
 
     // Update is called once per frame
@@ -31,14 +31,15 @@ public class BatteringRam : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.E))
         {
             Debug.Log("KeyCode E is up");
-            if (pivot2.activeSelf)
+            if (!PlayerTurn.Player1)
             {
-                Debug.Log("Pivot is rolling");
+                
                 sTower.SetActive(true);
-                currentPosition = sTower.transform.position;
+                currentPosition = InitialPosition;
+                sTower.transform.position = currentPosition;
             }
         }
-        if (Input.GetKeyUp(KeyCode.Space) && sTower.activeSelf && pivot2.activeSelf)
+        if (Input.GetKeyUp(KeyCode.Space) && sTower.activeSelf && !PlayerTurn.Player1)
         {
             //od 3.5 do -6.5
             currentPosition = sTower.transform.position;

@@ -7,8 +7,7 @@ public class SiegeTower : MonoBehaviour
 {
 
     public GameObject sTower;
-    public GameObject pivot;
-    public GameObject pivot2;
+    
 
     public Rigidbody2D turret1;
     public Rigidbody2D turret1_ostecen;
@@ -20,10 +19,12 @@ public class SiegeTower : MonoBehaviour
     public AudioClip collectSound;
     //position before the movement of sTower
     private Vector3 currentPosition;
+    private Vector3 InitialPosition;
     private Vector3 newPos;
     // Start is called before the first frame update
     void Start()
     {
+        InitialPosition = sTower.transform.position;
         
     }
 
@@ -33,14 +34,16 @@ public class SiegeTower : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.E))
         {
             Debug.Log("KeyCode E is up");
-            if (pivot.activeSelf)
+            if (PlayerTurn.Player1)
             {
-                Debug.Log("Pivot is rolling");
+                
                 sTower.SetActive(true);
-                currentPosition = sTower.transform.position;
+                currentPosition = InitialPosition;
+                sTower.transform.position = currentPosition;
+
             }
         }
-        if (Input.GetKeyUp(KeyCode.Space) && sTower.activeSelf && pivot.activeSelf)
+        if (Input.GetKeyUp(KeyCode.Space) && sTower.activeSelf && PlayerTurn.Player1)
         {
             //od - 4.5 do 5.75 
             currentPosition = sTower.transform.position;

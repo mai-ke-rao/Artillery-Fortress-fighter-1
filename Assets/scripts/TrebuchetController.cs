@@ -38,6 +38,10 @@ public class TrebuchetController : MonoBehaviour
     float scale, ydiff;
     float tilt;
 
+    private float timer = 0f;
+    public float delay = 3f; // seconds
+
+
     void Start()
     {
         //ovo izgleda ne uklucuje rotaciju
@@ -73,8 +77,10 @@ public class TrebuchetController : MonoBehaviour
 
                 halfcirlce = false;
 
-              angleVector = throwAngle.transform.eulerAngles;
-                asteroid.GetComponent<Collider2D>().enabled = false;
+                timer = 0f;
+
+                angleVector = throwAngle.transform.eulerAngles;
+                
 
                 // StartCoroutine(Delay());
 
@@ -85,6 +91,9 @@ public class TrebuchetController : MonoBehaviour
         // throw animation
         if(!weight.isKinematic)
         {
+
+
+            timer += Time.deltaTime;
             currentPosition = asteroid.transform.position;
           
             if(currentPosition.x > 8.5)
@@ -94,10 +103,10 @@ public class TrebuchetController : MonoBehaviour
              //   Debug.Log("angle sum constituent" + (Math.Abs(angleVector.z - 105) * 0.0044f));
             }
             //8 is latest release. 8.4 earliest realse. 8.2 middle. 105 dullest(vertical) 195 acutest(horizontal) angle
-            if(halfcirlce && currentPosition.x < 8.1)  //(Math.Abs(angleVector.z - 105) * 0.0044f)
+            if((halfcirlce && currentPosition.x < 8.1) || timer > delay)  //(Math.Abs(angleVector.z - 105) * 0.0044f)
             {
               
-                Debug.Log("Joint release");
+                Debug.Log("Joint release with timer of "+timer);
                 asteroid.GetComponent<FixedJoint2D>().enabled = false;
 
              halfcirlce = false;
@@ -130,10 +139,7 @@ public class TrebuchetController : MonoBehaviour
                 //asteroid.velocity += new Vector2((scale* Mathf.Cos(tilt)) > 0.5 ? (scale* Mathf.Cos(tilt))*4 :-(1-(Mathf.Cos(tilt)* scale))*4, ydiff >0.5 ? ydiff*2 :-(1-ydiff)*4);
             }
            
-            if(asteroid.transform.position.x < 6)
-            {
-                asteroid.GetComponent<Collider2D>().enabled = true;
-            }
+            
 
             StartCoroutine(Coroutine());
         }
@@ -161,6 +167,9 @@ public class TrebuchetController : MonoBehaviour
         //waits 3 seconds and return trebulchet into the inital position
     
         yield return new WaitForSeconds(5);
+
+        DebounceControll debounceControll = gameObject.GetComponentInChildren<DebounceControll>();
+        debounceControll.EnableCollider();
 
         asteroid.velocity = Vector3.zero;
         asteroid.angularVelocity = 0f;

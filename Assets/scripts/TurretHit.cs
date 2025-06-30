@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class TurretHit : MonoBehaviour
 {
@@ -8,6 +10,9 @@ public class TurretHit : MonoBehaviour
     public GameObject current;
     public GameObject final;
     public AudioClip blastSound;
+
+   
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +24,16 @@ public class TurretHit : MonoBehaviour
     {
         
     }
-    void OnCollisionEnter2D()
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        
 
+        DebounceControll debounceControll = collision.gameObject.GetComponent<DebounceControll>();
+
+        if (debounceControll != null)
+        {
+            debounceControll.DisableCollider();  // or EnableCollider()
+        }
+        
         StartCoroutine(TurHit());
 
        
@@ -31,8 +42,8 @@ public class TurretHit : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(blastSound, Camera.main.transform.position);
         yield return new WaitForSeconds(0.3f);
-        Debug.Log("bP" + BrownPower.loaded);
-        if (BrownPower.loaded)
+        Debug.Log("bP" + (BrownPower.loadedP1 | BrownPower.loadedP2));
+        if (BrownPower.loadedP1 | BrownPower.loadedP2)
         {
             current.SetActive(false);
             final.SetActive(true);

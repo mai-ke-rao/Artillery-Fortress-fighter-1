@@ -12,18 +12,18 @@ public class Strela : MonoBehaviour
     const float poluprecnikStrelice = 0.95f;
     const float kvadratStrelice = 0.90f;
     Vector3 newPosition;
-   // public gameObject pivot;
-    public GameObject pivot2;
+   
+    
     int x = 1;
-    int initialIncline = 0;
+    int initialIncline = 25;
     // Start is called before the first frame update
     
     void Start()
     {
-       if(pivot2.activeSelf)
+       if(!PlayerTurn.Player1)
         {
             x *= -1;
-            initialIncline = 170;
+            initialIncline = 145;
         }
 
         newPosition = new Vector3(0, 0, initialIncline);
