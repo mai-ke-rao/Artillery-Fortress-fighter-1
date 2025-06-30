@@ -29,9 +29,14 @@ public class TurretHit : MonoBehaviour
 
         DebounceControll debounceControll = collision.gameObject.GetComponent<DebounceControll>();
 
-        if (debounceControll != null)
+        if(Player1.debounceActive || Player2.debounceActive)
         {
-            debounceControll.DisableCollider();  // or EnableCollider()
+            Player1.deactivateDebounce();
+            Player2.deactivateDebounce();
+        }
+        else if (debounceControll != null)
+        {
+            debounceControll.DisableCollider();  
         }
         
         StartCoroutine(TurHit());

@@ -47,16 +47,61 @@ public class BrownPower : MonoBehaviour
         {
             if (PlayerTurn.Player1)
             {
-                loadedP1 = true;
-                SpriteRenderer sr = braonAsteroid.GetComponent<SpriteRenderer>();
-                sr.sprite = fireSprite;
+                if (Player1.fireBall < 1)
+                {
+                    Debug.Log("UI will prevent it");
+                }
+                else
+                {
+                    Player1.useFireBall();
+
+                    loadedP1 = true;
+                    SpriteRenderer sr = braonAsteroid.GetComponent<SpriteRenderer>();
+                    sr.sprite = fireSprite;
+                }
 
             }
             else if (!PlayerTurn.Player1)
             {
-                loadedP2 = true;
-                SpriteRenderer sr = siviAsteroid.GetComponent<SpriteRenderer>();
-                sr.sprite = fireSprite;
+                if (Player2.fireBall < 1)
+                {
+                    Debug.Log("UI will prevent it");
+                }
+                else
+                {
+                    Player2.useFireBall();
+                    loadedP2 = true;
+                    SpriteRenderer sr = siviAsteroid.GetComponent<SpriteRenderer>();
+                    sr.sprite = fireSprite;
+                }
+            }
+        }
+
+         if(Input.GetKeyUp(KeyCode.T))
+        {
+
+            if (PlayerTurn.Player1)
+            {
+                if (Player1.debounce < 1)
+                {
+                    Debug.Log("UI will prevent it");
+                }
+                else
+                {
+                    Player1.useDebounce();
+                }
+            }
+
+            if (!PlayerTurn.Player1)
+            {
+                if (Player2.debounce < 1)
+                {
+                    Debug.Log("UI will prevent it");
+                }
+                else
+                {
+                    Player2.useDebounce();
+                }
             }
         }
     }
