@@ -1,2 +1,2 @@
 Old look of the game.
-![Screenshot]("assets/screenshot (382).png")
+![Screenshot](assets/screenshot%20(382).png)
